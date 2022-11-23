@@ -12,8 +12,8 @@ const (
 	basePathKibanaConnector = "/api/actions/connector"
 )
 
-type KibanaConnectorConfig map[string]string
-type KibanaConnectorSecrets map[string]string
+type KibanaConnectorConfig map[string]interface{}
+type KibanaConnectorSecrets map[string]interface{}
 
 type KibanaConnector struct {
 	ID                string                `json:"id"`
