@@ -15,6 +15,7 @@ type API struct {
 	KibanaShortenURL       *KibanaShortenURLAPI
 	KibanaConnectorTypes   *KibanaConnectorTypesAPI
 	KibanaConnector        *KibanaConnectorAPI
+	KibanaAlertRuleTypes   *KibanaAlertRuleTypesAPI
 }
 
 // KibanaSpacesAPI handle the spaces API
@@ -82,6 +83,10 @@ type KibanaConnectorAPI struct {
 	Update KibanaConnectorUpdate
 }
 
+type KibanaAlertRuleTypesAPI struct {
+	List KibanaAlertRuleTypesList
+}
+
 // New initialise the API implementation
 func New(c *resty.Client) *API {
 	return &API{
@@ -133,6 +138,9 @@ func New(c *resty.Client) *API {
 			Delete: newKibanaConnectorDeleteFunc(c),
 			Create: newKibanaConnectorCreateFunc(c),
 			Update: newKibanaConnectorUpdateFunc(c),
+		},
+		KibanaAlertRuleTypes: &KibanaAlertRuleTypesAPI{
+			List: newKibanaAlertRuleTypesListFunc(c),
 		},
 	}
 }

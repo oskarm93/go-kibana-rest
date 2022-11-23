@@ -90,7 +90,6 @@ func newKibanaConnectorGetFunc(c *resty.Client) KibanaConnectorGet {
 // newKibanaConnectorListFunc permit to get all Kibana connector
 func newKibanaConnectorListFunc(c *resty.Client) KibanaConnectorList {
 	return func() (KibanaConnectors, error) {
-
 		path := fmt.Sprintf("%s%s", basePathKibanaConnector, "s") // plural
 		resp, err := c.R().Get(path)
 		if err != nil {

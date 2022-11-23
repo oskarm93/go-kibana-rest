@@ -33,7 +33,6 @@ type KibanaConnectorTypesList func() (KibanaConnectorTypes, error)
 
 func newKibanaConnectorTypesListFunc(c *resty.Client) KibanaConnectorTypesList {
 	return func() (KibanaConnectorTypes, error) {
-
 		resp, err := c.R().Get(basePathKibanaConnectorTypes)
 		if err != nil {
 			return nil, err
@@ -51,5 +50,4 @@ func newKibanaConnectorTypesListFunc(c *resty.Client) KibanaConnectorTypesList {
 
 		return kibanaConnectorTypes, nil
 	}
-
 }
