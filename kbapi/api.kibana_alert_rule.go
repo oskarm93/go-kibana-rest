@@ -215,14 +215,14 @@ func newKibanaAlertRuleUpdateFunc(c *resty.Client) KibanaAlertRuleUpdate {
 // newKibanaAlertRuleEnableFunc permit to update the kibana alert rule
 func newKibanaAlertRuleEnableFunc(c *resty.Client) KibanaAlertRuleEnable {
 	return func(id string) error {
-		path := fmt.Sprintf("%s/%s/enable", basePathKibanaAlertRule, id)
+		path := fmt.Sprintf("%s/%s/_enable", basePathKibanaAlertRule, id)
 		resp, err := c.R().Post(path)
 		if err != nil {
 			return err
 		}
 
 		log.Debug("Response: ", resp)
-		if resp.StatusCode() != 200 {
+		if resp.StatusCode() >= 300 {
 			return NewAPIError(resp.StatusCode(), resp.String())
 		}
 
@@ -233,14 +233,14 @@ func newKibanaAlertRuleEnableFunc(c *resty.Client) KibanaAlertRuleEnable {
 // newKibanaAlertRuleDisableFunc permit to update the kibana alert rule
 func newKibanaAlertRuleDisableFunc(c *resty.Client) KibanaAlertRuleDisable {
 	return func(id string) error {
-		path := fmt.Sprintf("%s/%s/disable", basePathKibanaAlertRule, id)
+		path := fmt.Sprintf("%s/%s/_disable", basePathKibanaAlertRule, id)
 		resp, err := c.R().Post(path)
 		if err != nil {
 			return err
 		}
 
 		log.Debug("Response: ", resp)
-		if resp.StatusCode() != 200 {
+		if resp.StatusCode() >= 300 {
 			return NewAPIError(resp.StatusCode(), resp.String())
 		}
 
