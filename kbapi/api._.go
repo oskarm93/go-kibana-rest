@@ -89,10 +89,12 @@ type KibanaAlertRuleTypesAPI struct {
 }
 
 type KibanaAlertRuleAPI struct {
-	Get    KibanaAlertRuleGet
-	Create KibanaAlertRuleCreate
-	Delete KibanaAlertRuleDelete
-	Update KibanaAlertRuleUpdate
+	Get     KibanaAlertRuleGet
+	Create  KibanaAlertRuleCreate
+	Delete  KibanaAlertRuleDelete
+	Update  KibanaAlertRuleUpdate
+	Enable  KibanaAlertRuleEnable
+	Disable KibanaAlertRuleDisable
 }
 
 // New initialise the API implementation
@@ -151,10 +153,12 @@ func New(c *resty.Client) *API {
 			List: newKibanaAlertRuleTypesListFunc(c),
 		},
 		KibanaAlertRule: &KibanaAlertRuleAPI{
-			Get:    newKibanaAlertRuleGetFunc(c),
-			Create: newKibanaAlertRuleCreateFunc(c),
-			Delete: newKibanaAlertRuleDeleteFunc(c),
-			Update: newKibanaAlertRuleUpdateFunc(c),
+			Get:     newKibanaAlertRuleGetFunc(c),
+			Create:  newKibanaAlertRuleCreateFunc(c),
+			Delete:  newKibanaAlertRuleDeleteFunc(c),
+			Update:  newKibanaAlertRuleUpdateFunc(c),
+			Enable:  newKibanaAlertRuleEnableFunc(c),
+			Disable: newKibanaAlertRuleDisableFunc(c),
 		},
 	}
 }
