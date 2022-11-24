@@ -23,7 +23,3 @@ require (
 	golang.org/x/term v0.1.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace (
-	github.com/disaster37/go-kibana-rest/v8 => ./go-kibana-rest
-)
