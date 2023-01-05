@@ -13,6 +13,10 @@ type API struct {
 	KibanaStatus           *KibanaStatusAPI
 	KibanaLogstashPipeline *KibanaLogstashPipelineAPI
 	KibanaShortenURL       *KibanaShortenURLAPI
+	KibanaConnectorTypes   *KibanaConnectorTypesAPI
+	KibanaConnector        *KibanaConnectorAPI
+	KibanaAlertRuleTypes   *KibanaAlertRuleTypesAPI
+	KibanaAlertRule        *KibanaAlertRuleAPI
 }
 
 // KibanaSpacesAPI handle the spaces API
@@ -68,6 +72,31 @@ type KibanaShortenURLAPI struct {
 	Create KibanaShortenURLCreate
 }
 
+type KibanaConnectorTypesAPI struct {
+	List KibanaConnectorTypesList
+}
+
+type KibanaConnectorAPI struct {
+	List   KibanaConnectorList
+	Get    KibanaConnectorGet
+	Delete KibanaConnectorDelete
+	Create KibanaConnectorCreate
+	Update KibanaConnectorUpdate
+}
+
+type KibanaAlertRuleTypesAPI struct {
+	List KibanaAlertRuleTypesList
+}
+
+type KibanaAlertRuleAPI struct {
+	Get     KibanaAlertRuleGet
+	Create  KibanaAlertRuleCreate
+	Delete  KibanaAlertRuleDelete
+	Update  KibanaAlertRuleUpdate
+	Enable  KibanaAlertRuleEnable
+	Disable KibanaAlertRuleDisable
+}
+
 // New initialise the API implementation
 func New(c *resty.Client) *API {
 	return &API{
@@ -109,6 +138,27 @@ func New(c *resty.Client) *API {
 		},
 		KibanaShortenURL: &KibanaShortenURLAPI{
 			Create: newKibanaShortenURLCreateFunc(c),
+		},
+		KibanaConnectorTypes: &KibanaConnectorTypesAPI{
+			List: newKibanaConnectorTypesListFunc(c),
+		},
+		KibanaConnector: &KibanaConnectorAPI{
+			List:   newKibanaConnectorListFunc(c),
+			Get:    newKibanaConnectorGetFunc(c),
+			Delete: newKibanaConnectorDeleteFunc(c),
+			Create: newKibanaConnectorCreateFunc(c),
+			Update: newKibanaConnectorUpdateFunc(c),
+		},
+		KibanaAlertRuleTypes: &KibanaAlertRuleTypesAPI{
+			List: newKibanaAlertRuleTypesListFunc(c),
+		},
+		KibanaAlertRule: &KibanaAlertRuleAPI{
+			Get:     newKibanaAlertRuleGetFunc(c),
+			Create:  newKibanaAlertRuleCreateFunc(c),
+			Delete:  newKibanaAlertRuleDeleteFunc(c),
+			Update:  newKibanaAlertRuleUpdateFunc(c),
+			Enable:  newKibanaAlertRuleEnableFunc(c),
+			Disable: newKibanaAlertRuleDisableFunc(c),
 		},
 	}
 }
